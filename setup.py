@@ -20,7 +20,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
-    # scripts=['bin/pytabgeo'],
     entry_points = {
         'console_scripts': ['pytabgeo=pytabgeo.pytabgeo:main'],
     },

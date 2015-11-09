@@ -1,4 +1,5 @@
 import os
+import socket
 import argparse
 from math import floor
 from struct import unpack
@@ -74,7 +75,19 @@ def _tabgeoBS(arr_data, ip, step):
         upackPrev = upack
 
 
+def _is_ipv4(addr):
+    try:
+        socket.inet_aton(addr)
+        return addr
+    except:
+        print ('Please, enter valid IP address')
+        return False
+
+
 def getCode(ip):
+
+    if not _is_ipv4(ip):
+        return
 
     ip_array = list(map(int, ip.split('.')))
 
@@ -110,8 +123,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("ip", help="Enter IP address")
     args = parser.parse_args()
+
+    if not _is_ipv4(args.ip):
+        return
+
     print('IP address: {0} \nCountry code: {1}'.format(args.ip,\
-                                                      getCode(args.ip)))
+                                                  getCode(args.ip)))
 
 
 if __name__ == '__main__':
